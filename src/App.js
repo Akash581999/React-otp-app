@@ -15,9 +15,9 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const handleOtp = () => {
+const handleOtp = (phoneNumber) => {
+  const phoneNo = phoneNumber;
   const reCaptcha = new firebase.auth.RecaptchaVerifier('reCaptcha');
-  const phoneNo = '+919634708314';
 
   firebase.auth().signInWithPhoneNumber(phoneNo, reCaptcha)
     .then(function (confirmationResult) {
@@ -28,7 +28,6 @@ const handleOtp = () => {
           .then(function (result) {
             console.log(result.user, 'user');
             document.querySelector('label').textContent = result.user.phoneNumber + "Phone Number Verified";
-            // alert(`${result.user.phoneNumber} Phone Number Verified`);
           })
           .catch(function (error) {
             console.error("Error confirming OTP:", error);
@@ -44,7 +43,7 @@ const App = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   return (
-    <div className='container'>
+    <div className='container bg-secondary'>
       <label></label>
       <input
         type="text"
@@ -54,7 +53,7 @@ const App = () => {
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
-      <button onClick={handleOtp}>Send OTP</button>
+      <button onClick={handleOtp} className='btn btn-primary'>Send OTP</button>
       <div id="reCaptcha"></div>
     </div>
   );
