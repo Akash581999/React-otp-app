@@ -27,8 +27,8 @@ const handleOtp = () => {
         confirmationResult.confirm(otpCode)
           .then(function (result) {
             console.log(result.user, 'user');
-            // document.querySelector('label').textContent = result.user.phoneNumber + "Phone Number Verified";
-            alert(`${result.user.phoneNumber} Phone Number Verified`);
+            document.querySelector('label').textContent = result.user.phoneNumber + "Phone Number Verified";
+            // alert(`${result.user.phoneNumber} Phone Number Verified`);
           })
           .catch(function (error) {
             console.error("Error confirming OTP:", error);
