@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+// import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 import { auth } from "./firebase";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
-const Login = () => {
+const ResetPassword = () => {
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
   const [user, setUser] = useState(null);
@@ -54,4 +56,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ResetPassword;

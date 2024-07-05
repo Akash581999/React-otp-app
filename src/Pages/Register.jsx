@@ -39,7 +39,7 @@ const handleOtp = (phoneNumber) => {
         });
 }
 
-const App = () => {
+const Register = () => {
     const [phoneNumber, setPhoneNumber] = useState("");
 
     return (
@@ -59,4 +59,4 @@ const App = () => {
     );
 }
 
-export default App;
+export default Register;
