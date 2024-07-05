@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+// import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBpIKtGFO6IRkK72_bQ4fxGAppCHpuzZDE",
@@ -21,8 +23,8 @@ const App = () => {
   const [message, setMessage] = useState("");
 
   const handleSendOtp = (phoneNumber) => {
-    // const phoneNo = `+91${phoneNumber}`;//With India country code
-    const phoneNo = phoneNumber;//Without India country code
+    const phoneNo = `+91${phoneNumber}`;//With India country code
+    // const phoneNo = phoneNumber;//Without India country code
     const reCaptcha = new firebase.auth.RecaptchaVerifier('reCaptcha');
 
     firebase.auth().signInWithPhoneNumber(phoneNo, reCaptcha)
@@ -54,7 +56,7 @@ const App = () => {
     <>
       <div className='container bg-secondary w-100'>
         <h1 className='fs-1 text-dark'>Phone Verification</h1>
-        <div className='text-success my-2'>{message}</div>
+        <div className='text-info my-2'>{message}</div>
         <br />
         <div>
           <label htmlFor='PhoneNumber'>Enter Phone Number:</label>
@@ -66,6 +68,11 @@ const App = () => {
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
+          {/* <PhoneInput
+            country={"in"}
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          /> */}
           <button onClick={() => handleSendOtp(phoneNumber)} className='btn btn-primary my-2'>Send OTP</button>
           <div id="reCaptcha" className='text-info my-2'></div>
           <br />
