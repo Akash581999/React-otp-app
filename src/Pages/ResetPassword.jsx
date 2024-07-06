@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
+import "firebase/compat/auth";
 import { auth } from "./firebase";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import PhoneInput from "react-phone-input-2";
