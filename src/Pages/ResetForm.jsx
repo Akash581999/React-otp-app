@@ -31,14 +31,15 @@ const ResetForm = () => {
   const handleSendOTP = async (e, phoneNumber) => {
     e.preventDefault();
     try {
-      //const phoneNo = "+919634708314";
-      const phoneNo = `+91${phoneNumber}`; //With India country code
+      const phoneNo = "+919634708314";
+      //   const phoneNo = `+91${phoneNumber}`; //With India country code
       const appVerifier = new firebase.auth.RecaptchaVerifier("reCaptcha", {
         size: "invisible",
       });
-      const confirmation = await firebase
-        .auth()
-        .signInWithPhoneNumber(phoneNo, appVerifier);
+      const confirmation = await auth.signInWithPhoneNumber(
+        phoneNo,
+        appVerifier
+      );
       setConfirmationResult(confirmation);
       console.log("OTP sent");
       alert("OTP sent to your phone number!");
