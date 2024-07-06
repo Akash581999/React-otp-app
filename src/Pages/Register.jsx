@@ -49,6 +49,7 @@ const Register = () => {
   return (
     <div className="container bg-secondary">
       <label className="text-info"></label>
+      <label htmlFor="PhoneNumber my-2">Enter Phone number:</label>
       <input
         type="text"
         className="form-control"
@@ -57,10 +58,7 @@ const Register = () => {
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
-      <button
-        onClick={handleOtp} // Pass handleOtp function directly
-        className="btn btn-primary my-3"
-      >
+      <button onClick={handleOtp} className="btn btn-primary my-3">
         Send OTP
       </button>
       <div id="reCaptcha" className="text-info"></div>

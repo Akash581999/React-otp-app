@@ -33,6 +33,7 @@ const ResetPassword = () => {
       setConfirmationResult(confirmation);
       console.log("OTP sent");
       alert("OTP sent");
+      setPhone("");
     } catch (error) {
       console.error(error);
     }
@@ -47,6 +48,7 @@ const ResetPassword = () => {
       await auth.signInWithCredential(credential);
       console.log("OTP verified");
       alert("OTP verified");
+      setOtp("");
     } catch (error) {
       console.error(error);
     }
