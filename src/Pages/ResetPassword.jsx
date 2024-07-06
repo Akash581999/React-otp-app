@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import firebase from "firebase/compat/app";
-import {
-  signInWithPhoneNumber,
-  RecaptchaVerifier,
-  getAuth,
-} from "firebase/auth";
+import "firebase/compat/auth";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
@@ -16,12 +12,12 @@ const firebaseConfig = {
   messagingSenderId: "434954909594",
   appId: "1:434954909594:web:0bfa09b64e4dc2e33dac23",
 };
-
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app();
 }
-
-const auth = getAuth();
+const auth = firebase.auth();
 
 const ResetPassword = () => {
   const [phone, setPhone] = useState("");
@@ -30,12 +26,13 @@ const ResetPassword = () => {
 
   const sendOtp = async () => {
     try {
-      const reCaptcha = new RecaptchaVerifier("reCaptcha", {
-        size: "invisible",
-      });
-      const confirmation = await signInWithPhoneNumber(auth, phone, reCaptcha);
+      const appVerifier = new firebase.auth.RecaptchaVerifier("reCaptcha");
+      const confirmation = await firebase
+        .auth()
+        .signInWithPhoneNumber(phone, appVerifier);
       setConfirmationResult(confirmation);
-      console.log(confirmation);
+      console.log("OTP sent");
+      alert("OTP sent");
     } catch (error) {
       console.error(error);
     }
@@ -47,10 +44,11 @@ const ResetPassword = () => {
         confirmationResult.verificationId,
         otp
       );
-      const user = await auth.signInWithCredential(credential);
-      console.log(user);
+      await auth.signInWithCredential(credential);
+      console.log("OTP verified");
+      alert("OTP verified");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -62,15 +60,15 @@ const ResetPassword = () => {
         value={phone}
         onChange={(phone) => setPhone("+" + phone)}
       />
-      <button type="submit" onClick={sendOtp} className="btn btn-primary">
+      <button type="button" onClick={sendOtp} className="btn btn-primary my-2">
         Send OTP
       </button>
       <div id="reCaptcha"></div>
       <br />
       <label>Enter OTP here:</label>
       <input type="text" value={otp} onChange={(e) => setOtp(e.target.value)} />
-      <br />
-      <button type="submit" onClick={verifyOtp} className="btn btn-primary">
+      &nbsp;
+      <button type="button" onClick={verifyOtp} className="btn btn-primary">
         Verify OTP
       </button>
     </div>

@@ -15,40 +15,40 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const handleOtp = (phoneNumber) => {
-  const phoneNo = phoneNumber;
-  const reCaptcha = new firebase.auth.RecaptchaVerifier("reCaptcha");
-
-  firebase
-    .auth()
-    .signInWithPhoneNumber(phoneNo, reCaptcha)
-    .then(function (confirmationResult) {
-      let otpCode = prompt("Enter the OTP", "");
-
-      if (otpCode !== null) {
-        confirmationResult
-          .confirm(otpCode)
-          .then(function (result) {
-            console.log(result.user, "user");
-            document.querySelector("label").textContent =
-              result.user.phoneNumber + " Phone Number Verified";
-          })
-          .catch(function (error) {
-            console.error("Error confirming OTP:", error);
-          });
-      }
-    })
-    .catch(function (error) {
-      console.error("Error sending OTP:", error);
-    });
-};
-
 const Register = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
+  const handleOtp = () => {
+    const phoneNo = `+91${phoneNumber}`;
+    const reCaptcha = new firebase.auth.RecaptchaVerifier("reCaptcha");
+
+    firebase
+      .auth()
+      .signInWithPhoneNumber(phoneNo, reCaptcha)
+      .then(function (confirmationResult) {
+        let otpCode = prompt("Enter the OTP", "");
+
+        if (otpCode !== null) {
+          confirmationResult
+            .confirm(otpCode)
+            .then(function (result) {
+              console.log(result.user);
+              document.querySelector("label").textContent =
+                result.user.phoneNumber + " Phone Number Verified";
+            })
+            .catch(function (error) {
+              console.error("Error confirming OTP:", error);
+            });
+        }
+      })
+      .catch(function (error) {
+        console.error("Error sending OTP:", error);
+      });
+  };
+
   return (
     <div className="container bg-secondary">
-      <label></label>
+      <label className="text-info"></label>
       <input
         type="text"
         className="form-control"
@@ -58,12 +58,12 @@ const Register = () => {
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
       <button
-        onClick={() => handleOtp(phoneNumber)}
-        className="btn btn-primary"
+        onClick={handleOtp} // Pass handleOtp function directly
+        className="btn btn-primary my-3"
       >
         Send OTP
       </button>
-      <div id="reCaptcha"></div>
+      <div id="reCaptcha" className="text-info"></div>
     </div>
   );
 };
