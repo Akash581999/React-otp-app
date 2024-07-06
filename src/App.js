@@ -2,7 +2,8 @@ import 'firebase/compat/auth';
 import "react-phone-input-2/lib/style.css";
 // import Login from './Pages/Login';
 // import Register from './Pages/Register';
-import ResetPassword from './Pages/ResetPassword';
+// import ResetPassword from './Pages/ResetPassword';
+import ResetForm from './Pages/ResetForm';
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
         <br />
         {/* <Register /> */}
         <br />
-        <ResetPassword />
+        {/* <ResetPassword /> */}
+        <br/>
+        <ResetForm/>
       </div>
     </>
   );
