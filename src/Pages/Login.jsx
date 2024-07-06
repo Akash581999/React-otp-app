@@ -62,7 +62,7 @@ const Login = () => {
   return (
     <>
       <div className="container bg-secondary w-100">
-        <h1 className="fs-1 text-dark">Phone Verification</h1>
+        {/* <h1 className="fs-1 text-dark">Phone Verification</h1> */}
         <div className="text-info my-2">{message}</div>
         <br />
         <div>
