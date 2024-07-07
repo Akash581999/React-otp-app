@@ -3,15 +3,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import Alertify from '../components/Alertify';
 import Toastify from '../components/Toastify';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBpIKtGFO6IRkK72_bQ4fxGAppCHpuzZDE",
-  authDomain: "react-otp-app-1a6df.firebaseapp.com",
-  projectId: "react-otp-app-1a6df",
-  storageBucket: "react-otp-app-1a6df.appspot.com",
-  messagingSenderId: "434954909594",
-  appId: "1:434954909594:web:0bfa09b64e4dc2e33dac23",
-};
+import firebaseConfig from "../FireBase";
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
