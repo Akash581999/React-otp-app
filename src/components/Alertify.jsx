@@ -19,10 +19,12 @@ function Alertify({ show, setShowAlert, topic, message, color, buttonText }) {
       </Button> */}
       {alertShown && (
         <Alert
-          className="w-25 position-absolute top-50 start-50 translate-middle"
+          className="w-25 top-50 start-50 translate-middle"
+          position={"top-center"}
+          style={{ zIndex: 1 }}
+          onClose={handleClose}
           show={alertShown}
           variant={color}
-          onClose={handleClose}
           animation={true}
           delay={2000}
           dismissible
