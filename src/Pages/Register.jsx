@@ -48,7 +48,7 @@ const Register = () => {
 
   return (
     <div className="container bg-secondary">
-      <label className="text-info"></label>
+      <label className="text-info fs-1"></label><br/>
       <label htmlFor="PhoneNumber my-2">Enter Phone number:</label>
       <input
         type="text"

@@ -1,30 +1,42 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 
-function Alertify() {
-  const [show, setShow] = useState(false);
+function Alertify({ show, setShowAlert, topic, message, color, buttonText }) {
+  const [alertShown, setAlertShown] = useState(false);
+  useEffect(() => {
+    setAlertShown(show);
+  }, [show]);
+  const handleClose = () => {
+    setAlertShown(false);
+    setShowAlert(false);
+  };
 
   return (
     <>
-      <Button onClick={() => setShow(true)} className="mb-3">
+      {/* <Button onClick={() => setAlertShown(true)} className="mb-3">
         Show Alert
-      </Button>
-      {show && (
+      </Button> */}
+      {alertShown && (
         <Alert
-          show={show}
-          variant="primary"
-          onClose={() => setShow(false)}
+          className="w-25 position-absolute top-50 start-50 translate-middle"
+          show={alertShown}
+          variant={color}
+          onClose={handleClose}
           animation={true}
           delay={2000}
-          autohide
           dismissible
+          autohide
         >
-          <Alert.Heading>Login Successfully!</Alert.Heading>
-          <p>Welcome, Akash Kumar!</p>
+          <Alert.Heading>
+            {topic}
+          </Alert.Heading>
+          <p>
+            {message}
+          </p>
           <div className="d-flex justify-content-end">
-            <Button onClick={() => setShow(false)} variant="primary">
-              Ok
+            <Button onClick={handleClose} variant={color}>
+              {buttonText}
             </Button>
           </div>
         </Alert>
