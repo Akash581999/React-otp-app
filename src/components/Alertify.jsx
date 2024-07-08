@@ -17,6 +17,7 @@ function Alertify({ show, setShowAlert, topic, message, color, buttonText }) {
       {/* <Button onClick={() => setAlertShown(true)} className="mb-3">
         Show Alert
       </Button> */}
+
       {alertShown && (
         <Alert
           className="w-25 top-50 start-50 translate-middle"
@@ -30,12 +31,8 @@ function Alertify({ show, setShowAlert, topic, message, color, buttonText }) {
           dismissible
           autohide
         >
-          <Alert.Heading>
-            {topic}
-          </Alert.Heading>
-          <p>
-            {message}
-          </p>
+          <Alert.Heading>{topic}</Alert.Heading>
+          <p>{message}</p>
           <div className="d-flex justify-content-end">
             <Button onClick={handleClose} variant={color}>
               {buttonText}

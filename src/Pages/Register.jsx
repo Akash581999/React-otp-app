@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import Alertify from '../components/Alertify';
-import Toastify from '../components/Toastify';
+import Alertify from "../components/Alertify";
+import Toastify from "../components/Toastify";
 import firebaseConfig from "../FireBase";
 
 if (!firebase.apps.length) {
@@ -55,7 +55,8 @@ const Register = () => {
         buttonText="OK"
       />
       <div className="container bg-secondary">
-        <span className="text-info fs-3"></span><br />
+        <span className="text-info fs-3"></span>
+        <br />
         <label htmlFor="PhoneNumber my-3">Phone number:</label>
         <input
           type="text"

@@ -44,7 +44,8 @@ function Toastify({ show, setShowToast, topic, message, color }) {
             </Toast.Header>
             <Toast.Body>{message}</Toast.Body>
           </Toast>
-        </ToastContainer>)}
+        </ToastContainer>
+      )}
     </>
   );
 }
